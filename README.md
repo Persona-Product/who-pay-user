@@ -2,6 +2,11 @@
 
 # 環境構築
 
+0. このリポジトリをクローン
+```
+git clone https://github.com/Persona-Product/who-pay-user.git
+```
+
 1. expoのcliをインストール
 ```
 npm install --global expo-cli
