@@ -7,7 +7,7 @@
 git clone https://github.com/Persona-Product/who-pay-user.git
 ```
 
-1. expoのcliをインストール
+1. Expoのcliをインストール
 ```
 npm install --global expo-cli
 ```
@@ -17,11 +17,17 @@ npm install --global expo-cli
 yarn install
 ```
 
-3. 開発環境立ち上げ
-```
-＄ エミュレーターで確認する場合
-yarn start
+3. 開発アプリ立ち上げ  
 
-$ アプリ経由で実機で確認する場合
+**エミュレーターで確認する場合**  
+（事前にAndroidStudioを立ち上げておく）
+```
+yarn android
+```
+
+**Expoアプリを使って自分のスマホで確認する場合**
+```
 yarn start --tunnel
 ```
+ブラウザかコマンドラインに表示されたQRコードをカメラで読み取る  
+（もしたらExpoのアカウント登録が必要かも？）
