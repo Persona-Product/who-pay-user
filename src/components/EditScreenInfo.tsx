@@ -2,8 +2,8 @@ import * as WebBrowser from "expo-web-browser";
 import type { VFC } from "react";
 import React, { useCallback } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
+import { Text, View } from "src/components";
 import { MonoText } from "src/components/StyledText";
-import { Text, View } from "src/components/Themed";
 import { themes } from "src/constants/Colors";
 
 export const EditScreenInfo: VFC<{ path: string }> = (props) => {

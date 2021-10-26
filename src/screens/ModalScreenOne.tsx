@@ -2,15 +2,17 @@ import { StatusBar } from "expo-status-bar";
 import type { VFC } from "react";
 import React from "react";
 import { Platform, StyleSheet } from "react-native";
+import { Text, View } from "src/components";
 import { EditScreenInfo } from "src/components/EditScreenInfo";
-import { Text, View } from "src/components/Themed";
 
 // モーダルを開いた時の画面（下から出てくるやつ）
 export const ModalScreenOne: VFC = () => {
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>Modal 1</Text>
+
 			<View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+
 			<EditScreenInfo path="/screens/ModalScreen.tsx" />
 			{/*  iOSの簡易的なステータスバーを使用して、モーダルの上の黒いスペースを考慮する  */}
 			<StatusBar style={Platform.OS === "ios" ? "dark" : "auto"} />
