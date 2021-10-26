@@ -1,8 +1,8 @@
 import type { VFC } from "react";
 import React from "react";
 import { StyleSheet } from "react-native";
+import { Text, View } from "src/components";
 import { EditScreenInfo } from "src/components/EditScreenInfo";
-import { Text, View } from "src/components/Themed";
 import type { RootTabScreenProps } from "types";
 
 // TabThreeScreenの画面

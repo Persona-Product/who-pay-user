@@ -3,7 +3,7 @@ import { Audio } from "expo-av";
 import type { VFC } from "react";
 import React, { useEffect, useRef, useState } from "react";
 import { Button, StyleSheet } from "react-native";
-import { Text, View } from "src/components/Themed";
+import { Text, View } from "src/components";
 import type { RootTabScreenProps } from "types";
 
 let recording = new Audio.Recording();

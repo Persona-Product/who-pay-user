@@ -44,11 +44,18 @@ export const BottomTabNavigator: VFC = () => {
 				name="TabOne"
 				component={TabOneScreen}
 				options={{
+					// tabBarBadge: 20, // バッチの文字
+					// tabBarBadgeStyle: {
+					// 	color: "red", // バッチの文字色
+					// 	backgroundColor: "blue", // バッチの背景色
+					// },
+					// tabBarShowLabel: false, // タブのタイトルをつけるか
 					title: "Tab One",
 					tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
 					// ヘッダーの左側にアイコンとか設定できる
 				}}
 			/>
+
 			<BottomTab.Screen
 				name="TabTwo"
 				component={TabTwoScreen}
@@ -65,11 +72,12 @@ export const BottomTabNavigator: VFC = () => {
 								opacity: pressed ? 0.5 : 1,
 							})}
 						>
-							<FontAwesome name="info-circle" size={25} color={themes[colorScheme].text} style={{ marginRight: 15 }} />
+							<FontAwesome name="info-circle" size={25} color={themes[colorScheme].icon} style={{ marginRight: 15 }} />
 						</Pressable>
 					),
 				})}
 			/>
+
 			<BottomTab.Screen
 				name="TabThree"
 				component={TabThreeScreen}
@@ -85,7 +93,7 @@ export const BottomTabNavigator: VFC = () => {
 								opacity: pressed ? 0.5 : 1,
 							})}
 						>
-							<AntDesign name="pluscircle" size={24} color="black" style={{ marginLeft: 15 }} />
+							<AntDesign name="pluscircle" size={25} color={themes[colorScheme].icon} style={{ marginLeft: 15 }} />
 						</Pressable>
 					),
 				})}

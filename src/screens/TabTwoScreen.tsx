@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet } from "react-native";
+import { Text, View } from "src/components";
 import { EditScreenInfo } from "src/components/EditScreenInfo";
-import { Text, View } from "src/components/Themed";
 
 // TabTwoScreenの画面
 export const TabTwoScreen = () => {
