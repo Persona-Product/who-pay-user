@@ -5,15 +5,16 @@
  */
 import type { VFC } from "react";
 import React from "react";
-import { Text as DefaultText } from "react-native";
+import { Text as NativeText } from "react-native";
 import type { ThemeProps } from "src/components/theme.type";
 import { useThemeColor } from "src/hooks/useThemeColor";
 
-export type TextProps = ThemeProps & DefaultText["props"];
+export type TextProps = ThemeProps & NativeText["props"];
 
 export const CustomText: VFC<TextProps> = (props) => {
-	const { style, lightColor, darkColor, ...otherProps } = props;
-	const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
+	const { style, lightTextColor, darkTextColor, ...otherProps } = props;
 
-	return <DefaultText style={[{ color }, style]} {...otherProps} />;
+	const color = useThemeColor({ light: lightTextColor, dark: darkTextColor }, "text");
+
+	return <NativeText style={[{ color }, style]} {...otherProps} />;
 };
