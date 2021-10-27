@@ -6,7 +6,7 @@ import { onKeyBoardClose } from "src/functions/onKeyBoardClose";
 import type { RootTabScreenProps } from "types";
 
 // TabOneScreenの画面
-export const TabOneScreen: VFC<RootTabScreenProps<"TabOne">> = () => {
+export const Screen: VFC<RootTabScreenProps<"TabOne">> = () => {
 	const [state, setState] = useState("");
 
 	const onChangeText = useCallback((text) => {
