@@ -5,15 +5,16 @@
  */
 import type { VFC } from "react";
 import React from "react";
-import { View as DefaultView } from "react-native";
+import { View as NativeView } from "react-native";
 import type { ThemeProps } from "src/components/theme.type";
 import { useThemeColor } from "src/hooks/useThemeColor";
 
-export type ViewProps = ThemeProps & DefaultView["props"];
+export type ViewProps = ThemeProps & NativeView["props"];
 
 export const CustomView: VFC<ViewProps> = (props) => {
-	const { style, lightColor, darkColor, ...otherProps } = props;
-	const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, "background");
+	const { style, lightBgColor, darkBgColor, ...otherProps } = props;
 
-	return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
+	const backgroundColor = useThemeColor({ light: lightBgColor, dark: darkBgColor }, "background");
+
+	return <NativeView style={[{ backgroundColor }, style]} {...otherProps} />;
 };

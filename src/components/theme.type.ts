@@ -1,4 +1,11 @@
+import type { StyleProp, TextStyle, ViewStyle } from "react-native";
+
 export type ThemeProps = {
-	lightColor?: string;
-	darkColor?: string;
+	lightTextColor?: string;
+	darkTextColor?: string;
+	textStyle?: StyleProp<TextStyle>;
+
+	lightBgColor?: string;
+	darkBgColor?: string;
+	bgStyle?: StyleProp<ViewStyle>;
 };

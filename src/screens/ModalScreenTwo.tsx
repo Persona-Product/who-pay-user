@@ -10,7 +10,7 @@ export const ModalScreenTwo: VFC = () => {
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>Modal 2</Text>
-			<View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+			<View style={styles.separator} lightBgColor="#eee" darkBgColor="rgba(255,255,255,0.1)" />
 			<EditScreenInfo path="/screens/ModalScreen.tsx" />
 
 			{/* Use a light status bar on iOS to account for the black space above the modal */}
