@@ -1,0 +1,17 @@
+import {
+	FACEBOOK_APP_ID,
+	FIREBASE_API_KEY,
+	FIREBASE_AUTH_DOMAIN,
+	FIREBASE_MESSENGER_SENDER_ID,
+	FIREBASE_PROJECT_ID,
+	FIREBASE_STORAGE_BUCKET,
+} from "react-native-dotenv";
+
+export const firebaseConfig = {
+	apiKey: FIREBASE_API_KEY,
+	authDomain: FIREBASE_AUTH_DOMAIN,
+	projectId: FIREBASE_PROJECT_ID,
+	storageBucket: FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: FIREBASE_MESSENGER_SENDER_ID,
+	appId: FACEBOOK_APP_ID,
+};
