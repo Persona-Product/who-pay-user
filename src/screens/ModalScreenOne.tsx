@@ -11,7 +11,7 @@ export const ModalScreenOne: VFC = () => {
 		<View style={styles.container}>
 			<Text style={styles.title}>Modal 1</Text>
 
-			<View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+			<View style={styles.separator} lightBgColor="#eee" darkBgColor="rgba(255,255,255,0.1)" />
 
 			<EditScreenInfo path="/screens/ModalScreen.tsx" />
 			{/*  iOSの簡易的なステータスバーを使用して、モーダルの上の黒いスペースを考慮する  */}

@@ -19,9 +19,9 @@ export const TabOneScreen: VFC<RootTabScreenProps<"TabOne">> = () => {
 				<View style={styles.container}>
 					<Text style={styles.title}>テキスト入力</Text>
 
-					<View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+					<View style={styles.separator} lightBgColor="#eee" darkBgColor="rgba(255,255,255,0.1)" />
 
-					<View style={styles.inputWrap} lightColor="#c7c7c74f" darkColor="#3049634f">
+					<View style={styles.inputWrap} lightBgColor="#c7c7c74f" darkBgColor="#3049634f">
 						<TextInput onChangeText={(text) => onChangeText(text)} value={state} placeholder="電話番号入力" />
 					</View>
 				</View>

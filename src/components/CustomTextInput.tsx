@@ -5,15 +5,16 @@
  */
 import type { VFC } from "react";
 import React from "react";
-import { TextInput as DefaultTextInput } from "react-native";
+import { TextInput as NativeTextInput } from "react-native";
 import type { ThemeProps } from "src/components/theme.type";
 import { useThemeColor } from "src/hooks/useThemeColor";
 
-export type TextInputProps = ThemeProps & DefaultTextInput["props"];
+export type TextInputProps = ThemeProps & NativeTextInput["props"];
 
 export const CustomTextInput: VFC<TextInputProps> = (props) => {
-	const { style, lightColor, darkColor, ...otherProps } = props;
-	const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
+	const { style, lightTextColor, darkTextColor, ...otherProps } = props;
 
-	return <DefaultTextInput style={[{ color }, style]} {...otherProps} />;
+	const color = useThemeColor({ light: lightTextColor, dark: darkTextColor }, "text");
+
+	return <NativeTextInput style={[{ color }, style]} {...otherProps} />;
 };
