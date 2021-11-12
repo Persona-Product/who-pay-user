@@ -5,12 +5,13 @@
  */
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { BlurView } from "expo-blur";
 import type { ComponentProps, VFC } from "react";
 import React, { useCallback } from "react";
-import { Pressable } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import { themes } from "src/constants/Colors";
 import { useColorScheme } from "src/hooks/useColorScheme";
-import { TabOneScreen } from "src/screens/TabOneScreen";
+import { SigninScreen } from "src/screens/SigninScreen";
 import { TabThreeScreen } from "src/screens/TabThreeScreen";
 import { TabTwoScreen } from "src/screens/TabTwoScreen";
 import type { RootTabParamList, RootTabScreenProps } from "types";
@@ -38,20 +39,25 @@ export const BottomTabNavigator: VFC = () => {
 			initialRouteName="TabOne"
 			screenOptions={{
 				tabBarActiveTintColor: themes[colorScheme].tint,
+				tabBarStyle: { position: "absolute" },
+				tabBarBackground: () => <BlurView intensity={10} style={StyleSheet.absoluteFill} />,
 			}}
 		>
 			<BottomTab.Screen
 				name="TabOne"
-				component={TabOneScreen}
+				component={SigninScreen}
 				options={{
-					// tabBarBadge: 20, // バッチの文字
-					// tabBarBadgeStyle: {
-					// 	color: "red", // バッチの文字色
-					// 	backgroundColor: "blue", // バッチの背景色
-					// },
+					tabBarBadge: 20, // バッチの文字
+					tabBarBadgeStyle: {
+						color: themes[colorScheme].background, // バッチの文字色
+						backgroundColor: themes[colorScheme].tint, // バッチの背景色
+					},
 					// tabBarShowLabel: false, // タブのタイトルをつけるか
 					title: "Tab One",
 					tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+					headerStyle: {
+						backgroundColor: themes[colorScheme].backgroundSub,
+					},
 					// ヘッダーの左側にアイコンとか設定できる
 				}}
 			/>
@@ -61,6 +67,7 @@ export const BottomTabNavigator: VFC = () => {
 				component={TabTwoScreen}
 				options={({ navigation }: RootTabScreenProps<"TabTwo">) => ({
 					title: "Tab Two",
+
 					tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
 					// ヘッダーの右側にアクション用のボタンとか設定できる
 					headerRight: () => (
@@ -75,6 +82,9 @@ export const BottomTabNavigator: VFC = () => {
 							<FontAwesome name="info-circle" size={25} color={themes[colorScheme].icon} style={{ marginRight: 15 }} />
 						</Pressable>
 					),
+					headerStyle: {
+						backgroundColor: themes[colorScheme].backgroundSub,
+					},
 				})}
 			/>
 
@@ -96,6 +106,9 @@ export const BottomTabNavigator: VFC = () => {
 							<AntDesign name="pluscircle" size={25} color={themes[colorScheme].icon} style={{ marginLeft: 15 }} />
 						</Pressable>
 					),
+					headerStyle: {
+						backgroundColor: themes[colorScheme].backgroundSub,
+					},
 				})}
 			/>
 		</BottomTab.Navigator>

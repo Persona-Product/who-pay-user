@@ -8,6 +8,7 @@ export const themes = {
 	light: {
 		text: "#000",
 		background: "#fff",
+		backgroundSub: "#fff",
 		icon: iconColorLight,
 		tint: tintColorLight,
 		tabIconDefault: "#eee",
@@ -15,7 +16,8 @@ export const themes = {
 	},
 	dark: {
 		text: "#fff",
-		background: "#1a232d",
+		background: "#242e3a",
+		backgroundSub: "#242e3a",
 		icon: iconColorDark,
 		tint: tintColorDark,
 		tabIconDefault: "#eee",

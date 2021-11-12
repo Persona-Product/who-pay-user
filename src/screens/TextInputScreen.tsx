@@ -6,7 +6,7 @@ import { onKeyBoardClose } from "src/functions/onKeyBoardClose";
 import type { RootTabScreenProps } from "types";
 
 // TabOneScreenの画面
-export const Screen: VFC<RootTabScreenProps<"TabOne">> = () => {
+export const TextInputScreen: VFC<RootTabScreenProps<"TabOne">> = () => {
 	const [state, setState] = useState("");
 
 	const onChangeText = useCallback((text) => {
@@ -21,9 +21,12 @@ export const Screen: VFC<RootTabScreenProps<"TabOne">> = () => {
 
 					<View style={styles.separator} lightBgColor="#eee" darkBgColor="rgba(255,255,255,0.1)" />
 
-					<View style={styles.inputWrap} lightBgColor="#c7c7c74f" darkBgColor="#3049634f">
-						<TextInput onChangeText={(text) => onChangeText(text)} value={state} placeholder="電話番号入力" />
-					</View>
+					<TextInput
+						bgStyle={styles.inputWrap}
+						onChangeText={(text) => onChangeText(text)}
+						value={state}
+						placeholder="電話番号入力"
+					/>
 				</View>
 			</TouchableWithoutFeedback>
 		</>
@@ -46,8 +49,8 @@ const styles = StyleSheet.create({
 		width: "80%",
 	},
 	inputWrap: {
-		padding: 10,
 		minWidth: "80%",
+		padding: 10,
 		borderRadius: 10,
 	},
 });

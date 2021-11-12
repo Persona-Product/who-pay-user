@@ -1,11 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
-/**
- * Learn more about Light and Dark modes:
- * https://docs.expo.io/guides/color-schemes/
- */
 import type { VFC } from "react";
 import React from "react";
-import { Text as NativeText } from "react-native";
+import { StyleSheet, Text as NativeText } from "react-native";
 import type { ThemeProps } from "src/components/theme.type";
 import { useThemeColor } from "src/hooks/useThemeColor";
 
@@ -16,5 +12,9 @@ export const CustomText: VFC<TextProps> = (props) => {
 
 	const color = useThemeColor({ light: lightTextColor, dark: darkTextColor }, "text");
 
-	return <NativeText style={[{ color }, style]} {...otherProps} />;
+	return <NativeText style={[defaultStyles.text, style, { color }]} {...otherProps} />;
 };
+
+const defaultStyles = StyleSheet.create({
+	text: { width: "80%" },
+});

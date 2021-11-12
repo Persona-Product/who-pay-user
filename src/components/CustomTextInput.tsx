@@ -1,20 +1,32 @@
 /* eslint-disable react/destructuring-assignment */
-/**
- * Learn more about Light and Dark modes:
- * https://docs.expo.io/guides/color-schemes/
- */
 import type { VFC } from "react";
 import React from "react";
-import { TextInput as NativeTextInput } from "react-native";
+import { StyleSheet, TextInput as NativeTextInput } from "react-native";
+import type { ViewProps } from "src/components/CustomView";
+import { CustomView } from "src/components/CustomView";
 import type { ThemeProps } from "src/components/theme.type";
 import { useThemeColor } from "src/hooks/useThemeColor";
 
-export type TextInputProps = ThemeProps & NativeTextInput["props"];
+export type TextInputProps = ThemeProps & ViewProps & NativeTextInput["props"];
 
 export const CustomTextInput: VFC<TextInputProps> = (props) => {
-	const { style, lightTextColor, darkTextColor, ...otherProps } = props;
+	const { textStyle, lightTextColor, darkTextColor, bgStyle, ...otherProps } = props;
 
 	const color = useThemeColor({ light: lightTextColor, dark: darkTextColor }, "text");
 
-	return <NativeTextInput style={[{ color }, style]} {...otherProps} />;
+	return (
+		<CustomView style={[defaultStyles.bg, bgStyle]} lightBgColor="#ffffff" darkBgColor="#45698f63">
+			<NativeTextInput style={[textStyle, { color }]} {...otherProps} />
+		</CustomView>
+	);
 };
+
+const defaultStyles = StyleSheet.create({
+	bg: {
+		width: "80%",
+		padding: 10,
+
+		borderWidth: 2,
+		borderColor: "#4882ff",
+	},
+});
