@@ -3,7 +3,6 @@ import type { VFC } from "react";
 import React from "react";
 import { Platform, StyleSheet } from "react-native";
 import { Text, View } from "src/components";
-import { EditScreenInfo } from "src/components/EditScreenInfo";
 
 // モーダルを開いた時の画面（下から出てくるやつ）
 export const ModalScreenOne: VFC = () => {
@@ -13,7 +12,6 @@ export const ModalScreenOne: VFC = () => {
 
 			<View style={styles.separator} lightBgColor="#eee" darkBgColor="rgba(255,255,255,0.1)" />
 
-			<EditScreenInfo path="/screens/ModalScreen.tsx" />
 			{/*  iOSの簡易的なステータスバーを使用して、モーダルの上の黒いスペースを考慮する  */}
 			<StatusBar style={Platform.OS === "ios" ? "dark" : "auto"} />
 		</View>
