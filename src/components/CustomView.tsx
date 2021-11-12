@@ -1,8 +1,4 @@
 /* eslint-disable react/destructuring-assignment */
-/**
- * Learn more about Light and Dark modes:
- * https://docs.expo.io/guides/color-schemes/
- */
 import type { VFC } from "react";
 import React from "react";
 import { View as NativeView } from "react-native";
@@ -16,5 +12,5 @@ export const CustomView: VFC<ViewProps> = (props) => {
 
 	const backgroundColor = useThemeColor({ light: lightBgColor, dark: darkBgColor }, "background");
 
-	return <NativeView style={[{ backgroundColor }, style]} {...otherProps} />;
+	return <NativeView style={[style, { backgroundColor }]} {...otherProps} />;
 };

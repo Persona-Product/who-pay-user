@@ -1,13 +1,10 @@
 /* eslint-disable react/destructuring-assignment */
-/**
- * Learn more about Light and Dark modes:
- * https://docs.expo.io/guides/color-schemes/
- */
 import type { VFC } from "react";
 import React from "react";
 import { StyleSheet, TouchableOpacity as NativeTouchableOpacity } from "react-native";
 import type { TextProps } from "src/components/CustomText";
 import { CustomText } from "src/components/CustomText";
+import { CustomView } from "src/components/CustomView";
 import type { ThemeProps } from "src/components/theme.type";
 import { useThemeColor } from "src/hooks/useThemeColor";
 
@@ -29,35 +26,49 @@ export const CustomColorButton: VFC<ColorButtonProps> = (props) => {
 		bgStyle,
 		lightBgColor,
 		darkBgColor,
+		// ViewProps
+		outlineStyle,
 		onPress,
 	} = props;
 
 	const backgroundColor = useThemeColor({ light: lightBgColor, dark: darkBgColor }, "background");
 
 	return (
-		<NativeTouchableOpacity
-			style={[{ backgroundColor }, bgStyle, styles.default]}
-			activeOpacity={0.2}
-			onPress={onPress}
-		>
-			{children}
-
-			<CustomText lightTextColor={lightTextColor} darkTextColor={darkTextColor} style={textStyle}>
-				{title}
-			</CustomText>
-		</NativeTouchableOpacity>
+		<CustomView style={[defaultStyles.outline, outlineStyle]}>
+			<NativeTouchableOpacity
+				style={[defaultStyles.bg, bgStyle, { backgroundColor }]}
+				activeOpacity={0.4}
+				onPress={onPress}
+			>
+				{children}
+				<CustomText
+					lightTextColor={lightTextColor}
+					darkTextColor={darkTextColor}
+					style={[defaultStyles.text, textStyle]}
+				>
+					{title}
+				</CustomText>
+			</NativeTouchableOpacity>
+		</CustomView>
 	);
 };
 
-const styles = StyleSheet.create({
-	default: {
+const defaultStyles = StyleSheet.create({
+	outline: {
+		width: "80%",
+	},
+	bg: {
 		display: "flex",
 		alignItems: "center",
-		flexDirection: "row",
-		justifyContent: "space-between",
+		justifyContent: "center",
 
-		paddingVertical: 10,
+		paddingVertical: 15,
 		paddingHorizontal: 15,
 		borderRadius: 9999,
+	},
+	text: {
+		fontSize: 20,
+		fontWeight: "bold",
+		textAlign: "center",
 	},
 });
