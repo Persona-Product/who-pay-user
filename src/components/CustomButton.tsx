@@ -1,8 +1,4 @@
 /* eslint-disable react/destructuring-assignment */
-/**
- * Learn more about Light and Dark modes:
- * https://docs.expo.io/guides/color-schemes/
- */
 import type { VFC } from "react";
 import React from "react";
 import { Button as NativeButton } from "react-native";

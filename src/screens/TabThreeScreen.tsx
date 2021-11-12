@@ -2,7 +2,6 @@ import type { VFC } from "react";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Text, View } from "src/components";
-import { EditScreenInfo } from "src/components/EditScreenInfo";
 import type { RootTabScreenProps } from "types";
 
 // TabThreeScreenの画面
@@ -11,7 +10,6 @@ export const TabThreeScreen: VFC<RootTabScreenProps<"TabThree">> = () => {
 		<View style={styles.container}>
 			<Text style={styles.title}>Tab Three</Text>
 			<View style={styles.separator} lightBgColor="#eee" darkBgColor="rgba(255,255,255,0.1)" />
-			<EditScreenInfo path="/screens/TabThreeScreen.tsx" />
 		</View>
 	);
 };

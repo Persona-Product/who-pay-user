@@ -8,7 +8,7 @@ import type { RootTabScreenProps } from "types";
 
 let recording = new Audio.Recording();
 
-export const Screen: VFC<RootTabScreenProps<"TabThree">> = () => {
+export const RecordAndPlay: VFC<RootTabScreenProps<"TabThree">> = () => {
 	const Player = useRef(new Audio.Sound());
 
 	// 録音データ保存先

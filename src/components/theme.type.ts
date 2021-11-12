@@ -8,4 +8,6 @@ export type ThemeProps = {
 	lightBgColor?: string;
 	darkBgColor?: string;
 	bgStyle?: StyleProp<ViewStyle>;
+
+	outlineStyle?: StyleProp<ViewStyle>;
 };
