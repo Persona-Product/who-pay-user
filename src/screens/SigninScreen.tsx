@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import type { Dispatch, SetStateAction, VFC } from "react";
 import React, { useCallback, useState } from "react";
 import { StyleSheet } from "react-native";
-import { ColorButton, Text, TextInput, View } from "src/components";
+import { Button, ColorButton, Text, TextInput, View } from "src/components";
 
 // モーダルを開いた時の画面（下から出てくるやつ）
 export const SigninScreen: VFC = () => {
@@ -16,9 +17,24 @@ export const SigninScreen: VFC = () => {
 		console.info(phone, password);
 	}, []);
 
-	const onSignup = useCallback(() => {
-		console.info("サインアップ");
+	const onSignup = useCallback(async (phone: string, password: string) => {
+		const result = await fetch("http://localhost:4000/auth/signup", {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				phone: "81" + phone,
+				password: password,
+			}),
+		});
+		console.log(result);
 	}, []);
+
+	const onClick = () => {
+		console.log("click!!");
+	};
 
 	return (
 		<View style={styles.root}>
@@ -43,24 +59,26 @@ export const SigninScreen: VFC = () => {
 				lightTextColor="#ffffff"
 				darkTextColor="#ffffff"
 				bgStyle={buttonStyles.button}
-				lightBgColor="#4882ff"
-				darkBgColor="#3575ff"
+				lightBgColor="#00e8bd"
+				darkBgColor="#00cba6"
 				outlineStyle={buttonStyles.outline}
-				title="サインイン"
+				title="ログイン"
 				onPress={() => onSignin(phone, password)}
 			/>
 
-			<ColorButton
+			<Text style={buttonStyles.register}>新規登録</Text>
+
+			{/* <ColorButton
 				textStyle={buttonStyles.text}
 				lightTextColor="#ffffff"
 				darkTextColor="#ffffff"
 				bgStyle={buttonStyles.button}
-				lightBgColor="#ffbb46"
-				darkBgColor="#ffb433"
+				lightBgColor="#ffd037"
+				darkBgColor="#ffd037"
 				outlineStyle={buttonStyles.outline}
-				title="サインアップ"
-				onPress={onSignup}
-			/>
+				title="新規登録"
+				onPress={() => onSignup(phone, password)}
+			/> */}
 		</View>
 	);
 };
@@ -82,6 +100,7 @@ const inputStyles = StyleSheet.create({
 	},
 	bg: {
 		borderRadius: 10,
+		padding: 12,
 	},
 });
 
@@ -89,4 +108,11 @@ export const buttonStyles = StyleSheet.create({
 	outline: { marginTop: 20 },
 	text: {},
 	button: {},
+	register: {
+		paddingVertical: 15,
+		textAlign: "right",
+		":hover": {
+			textDecorationLine: "underline",
+		},
+	},
 });
