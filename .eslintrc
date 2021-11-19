@@ -130,7 +130,7 @@
 			// 型定義の時にパスカルケースで命名する
 			{ "selector": ["typeAlias", "typeParameter"], "format": ["PascalCase"] },
 			// 型定義のpropsはキャメルケースで命名する
-			{ "selector": ["property", "method"], "format": ["camelCase"] }
+			{ "selector": ["property", "method"], "format": ["camelCase", "PascalCase"] }
 			// 変数(variable)の命名規則
 			// ****************今回はuseQuery()の戻り値の変数が固定なのかもしれないから{data, error, loading}の型に従う****************
 			// {
