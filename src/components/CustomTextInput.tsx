@@ -15,7 +15,7 @@ export const CustomTextInput: VFC<TextInputProps> = (props) => {
 	const color = useThemeColor({ light: lightTextColor, dark: darkTextColor }, "text");
 
 	return (
-		<CustomView style={[defaultStyles.bg, bgStyle]} lightBgColor="#eeeeee" darkBgColor="#354355">
+		<CustomView style={[defaultStyles.bg, bgStyle]} lightBgColor="#eeeeeeaa" darkBgColor="#354355aa">
 			<NativeTextInput style={[textStyle, { color }]} {...otherProps} />
 		</CustomView>
 	);

@@ -1,46 +1,36 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import { useNavigation } from "@react-navigation/native";
 import type { VFC } from "react";
 import React, { useCallback, useState } from "react";
 import { StyleSheet, TouchableWithoutFeedback } from "react-native";
-import { ColorButton, Text, TextInput, View } from "src/components";
+import { ColorButton, Text, View } from "src/components";
 import { onKeyBoardClose } from "src/functions/onKeyBoardClose";
-import type { RootTabScreenProps } from "types";
+import type { RootTabScreenProps, ScreenProp } from "types";
 
 // TabOneScreenの画面
 export const TabOneScreen: VFC<RootTabScreenProps<"TabOne">> = () => {
-	const [state, setState] = useState("");
+	const navigation = useNavigation<ScreenProp>();
+	const [count, setCount] = useState(0);
 
-	const onChangeText = useCallback((text) => {
-		setState(text);
+	const onCount = useCallback(() => {
+		setCount((count) => {
+			if (count === 2) {
+				navigation.navigate("Signin");
+				return 0;
+			}
+			return count + 1;
+		});
 	}, []);
 
-	const onRequest = async () => {
-		const result = await fetch("http://localhost:4000/auth/signup", {
-			method: "POST",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
-				phone: state,
-				password: "ndfaabvklkkvfakndj",
-			}),
-		});
-		console.log(result);
-	};
 	return (
 		<TouchableWithoutFeedback onPress={onKeyBoardClose}>
 			<View style={styles.container}>
-				<Text style={styles.title}>サインイン</Text>
+				<Text style={styles.title}>サインインなう</Text>
 
 				<View style={styles.separator} lightBgColor="#eee" darkBgColor="rgba(255,255,255,0.1)" />
 
-				<TextInput
-					bgStyle={styles.inputWrap}
-					onChangeText={(text) => onChangeText(text)}
-					value={state}
-					placeholder="電話番号入力"
-				/>
+				<Text>カウンター{count}</Text>
+				<Text>3回押すとサインインに戻るよ</Text>
 
 				<ColorButton
 					textStyle={styles.buttonLabel}
@@ -49,8 +39,8 @@ export const TabOneScreen: VFC<RootTabScreenProps<"TabOne">> = () => {
 					bgStyle={styles.button}
 					lightBgColor="#4882ff"
 					darkBgColor="#ff8c00"
-					onPress={onRequest}
-					title="ボタン"
+					title="無限ボタン"
+					onPress={onCount}
 				/>
 			</View>
 		</TouchableWithoutFeedback>
@@ -64,8 +54,10 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 	},
 	title: {
-		fontSize: 20,
+		paddingVertical: 10,
+		fontSize: 24,
 		fontWeight: "bold",
+		textAlign: "center",
 	},
 	separator: {
 		marginVertical: 30,

@@ -1,8 +1,3 @@
-/**
- * If you are not familiar with React Navigation, refer to the "Fundamentals" guide:
- * https://reactnavigation.org/docs/getting-started
- *
- */
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { BlurView } from "expo-blur";
@@ -11,15 +6,11 @@ import React, { useCallback } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { themes } from "src/constants/Colors";
 import { useColorScheme } from "src/hooks/useColorScheme";
-import { SigninScreen } from "src/screens/SigninScreen";
+import { TabOneScreen } from "src/screens/TabOneScreen";
 import { TabThreeScreen } from "src/screens/TabThreeScreen";
 import { TabTwoScreen } from "src/screens/TabTwoScreen";
 import type { RootTabParamList, RootTabScreenProps } from "types";
 
-/**
- * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
- * https://reactnavigation.org/docs/bottom-tab-navigator
- */
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 export const BottomTabNavigator: VFC = () => {
@@ -45,13 +36,13 @@ export const BottomTabNavigator: VFC = () => {
 		>
 			<BottomTab.Screen
 				name="TabOne"
-				component={SigninScreen}
+				component={TabOneScreen}
 				options={{
-					tabBarBadge: 20, // バッチの文字
-					tabBarBadgeStyle: {
-						color: themes[colorScheme].background, // バッチの文字色
-						backgroundColor: themes[colorScheme].tint, // バッチの背景色
-					},
+					// tabBarBadge: 20, // バッチの文字
+					// tabBarBadgeStyle: {
+					// 	color: themes[colorScheme].background, // バッチの文字色
+					// 	backgroundColor: themes[colorScheme].tint, // バッチの背景色
+					// },
 					// tabBarShowLabel: false, // タブのタイトルをつけるか
 					title: "Tab One",
 					tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
@@ -73,7 +64,7 @@ export const BottomTabNavigator: VFC = () => {
 					headerRight: () => (
 						<Pressable
 							// クリックしたらモーダルが開く
-							onPress={() => onScreenPush(navigation, "Modal1")}
+							onPress={() => onScreenPush(navigation, "Signin")}
 							// 押している時にスタイルを変更できる
 							style={({ pressed }) => ({
 								opacity: pressed ? 0.5 : 1,
