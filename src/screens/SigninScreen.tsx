@@ -1,11 +1,14 @@
-/* eslint-disable @typescript-eslint/naming-convention */
+import { useNavigation } from "@react-navigation/native";
 import type { Dispatch, SetStateAction, VFC } from "react";
 import React, { useCallback, useState } from "react";
 import { StyleSheet } from "react-native";
-import { Button, ColorButton, Text, TextInput, View } from "src/components";
+import { ColorButton, Text, TextInput, View } from "src/components";
+import type { ScreenProp } from "types";
 
 // モーダルを開いた時の画面（下から出てくるやつ）
 export const SigninScreen: VFC = () => {
+	const navigation = useNavigation<ScreenProp>();
+
 	const [phone, setPhone] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -15,29 +18,17 @@ export const SigninScreen: VFC = () => {
 
 	const onSignin = useCallback((phone: string, password: string) => {
 		console.info(phone, password);
+		navigation.navigate("Root");
 	}, []);
 
-	const onSignup = useCallback(async (phone: string, password: string) => {
-		const result = await fetch("http://localhost:4000/auth/signup", {
-			method: "POST",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
-				phone: "81" + phone,
-				password: password,
-			}),
-		});
-		console.log(result);
+	const onNavigateSignup = useCallback(() => {
+		navigation.navigate("Signup");
 	}, []);
-
-	const onClick = () => {
-		console.log("click!!");
-	};
 
 	return (
 		<View style={styles.root}>
+			<Text style={styles.title}>アカウント作成</Text>
+
 			<Text style={inputStyles.label}>電話番号</Text>
 			<TextInput
 				bgStyle={inputStyles.bg}
@@ -62,23 +53,13 @@ export const SigninScreen: VFC = () => {
 				lightBgColor="#00e8bd"
 				darkBgColor="#00cba6"
 				outlineStyle={buttonStyles.outline}
-				title="ログイン"
+				title="サインイン"
 				onPress={() => onSignin(phone, password)}
 			/>
 
-			<Text style={buttonStyles.register}>新規登録</Text>
-
-			{/* <ColorButton
-				textStyle={buttonStyles.text}
-				lightTextColor="#ffffff"
-				darkTextColor="#ffffff"
-				bgStyle={buttonStyles.button}
-				lightBgColor="#ffd037"
-				darkBgColor="#ffd037"
-				outlineStyle={buttonStyles.outline}
-				title="新規登録"
-				onPress={() => onSignup(phone, password)}
-			/> */}
+			<Text style={buttonStyles.register} onPress={onNavigateSignup}>
+				アカウント作成はこちら
+			</Text>
 		</View>
 	);
 };
@@ -89,6 +70,12 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "center",
 	},
+	title: {
+		paddingVertical: 10,
+		fontSize: 24,
+		fontWeight: "bold",
+		textAlign: "center",
+	},
 });
 
 const inputStyles = StyleSheet.create({
@@ -96,7 +83,6 @@ const inputStyles = StyleSheet.create({
 		paddingVertical: 10,
 		fontSize: 15,
 		fontWeight: "bold",
-		textAlignVertical: "center",
 	},
 	bg: {
 		borderRadius: 10,
@@ -111,8 +97,5 @@ export const buttonStyles = StyleSheet.create({
 	register: {
 		paddingVertical: 15,
 		textAlign: "right",
-		":hover": {
-			textDecorationLine: "underline",
-		},
 	},
 });
