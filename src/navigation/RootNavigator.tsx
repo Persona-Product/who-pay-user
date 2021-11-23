@@ -1,8 +1,3 @@
-/**
- * If you are not familiar with React Navigation, refer to the "Fundamentals" guide:
- * https://reactnavigation.org/docs/getting-started
- *
- */
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { themes } from "src/constants/Colors";
@@ -11,21 +6,44 @@ import { BottomTabNavigator } from "src/navigation/BottomTabNavigator";
 import { ModalScreenOne } from "src/screens/ModalScreenOne";
 import { ModalScreenTwo } from "src/screens/ModalScreenTwo";
 import { NotFoundScreen } from "src/screens/NotFoundScreen";
+import { SigninScreen } from "src/screens/SigninScreen";
+import { SignupScreen } from "src/screens/SignupScreen";
+import { VerifyScreen } from "src/screens/VerifyScreen";
 import type { RootStackParamList } from "types";
 
-/**
- * A root stack navigator is often used for displaying modals on top of all other content.
- * https://reactnavigation.org/docs/modal
- */
 const Stack = createNativeStackNavigator<RootStackParamList>();
+
+const isSignined = false;
 
 export const RootNavigator = () => {
 	const colorScheme = useColorScheme();
 
 	return (
-		<Stack.Navigator>
+		<Stack.Navigator initialRouteName={isSignined ? "Root" : "Signin"}>
+			<Stack.Screen
+				name="Signin"
+				component={SigninScreen}
+				options={() => ({
+					headerShown: false,
+				})}
+			/>
+			<Stack.Screen
+				name="Signup"
+				component={SignupScreen}
+				options={() => ({
+					headerShown: false,
+				})}
+			/>
+			<Stack.Screen
+				name="Verify"
+				component={VerifyScreen}
+				options={() => ({
+					headerShown: false,
+				})}
+			/>
+
 			<Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-			<Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: "Oops!" }} />
+
 			<Stack.Group screenOptions={{ presentation: "modal" }}>
 				<Stack.Screen
 					name="Modal1"
@@ -46,6 +64,8 @@ export const RootNavigator = () => {
 					component={ModalScreenTwo}
 				/>
 			</Stack.Group>
+
+			<Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: "Oops!" }} />
 		</Stack.Navigator>
 	);
 };

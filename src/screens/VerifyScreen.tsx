@@ -5,37 +5,39 @@ import { StyleSheet } from "react-native";
 import { ColorButton, Text, TextInput, View } from "src/components";
 import type { ScreenProp } from "types";
 
+type Props = {
+	phone: string;
+};
+
 // モーダルを開いた時の画面（下から出てくるやつ）
-export const SigninScreen: VFC = () => {
+export const VerifyScreen: VFC<Props> = (props) => {
 	const navigation = useNavigation<ScreenProp>();
 
-	const [phone, setPhone] = useState("");
 	const [password, setPassword] = useState("");
 
 	const onChangeText = useCallback((text: string, setStateAction: Dispatch<SetStateAction<string>>) => {
 		setStateAction(text);
 	}, []);
 
-	const onSignin = useCallback((phone: string, password: string) => {
+	const onPostVerifyCode = useCallback(async (phone: string, password: string) => {
 		console.info(phone, password);
+		// const result = await fetch("http://localhost:4000/auth/signup", {
+		// 	method: "POST",
+		// 	headers: {
+		// 		Accept: "application/json",
+		// 		"Content-Type": "application/json",
+		// 	},
+		// 	body: JSON.stringify({
+		// 		phone: "81" + phone,
+		// 		password: password,
+		// 	}),
+		// });
 		navigation.navigate("Root");
-	}, []);
-
-	const onNavigateSignup = useCallback(() => {
-		navigation.navigate("Signup");
 	}, []);
 
 	return (
 		<View style={styles.root}>
-			<Text style={styles.title}>アカウント作成</Text>
-
-			<Text style={inputStyles.label}>電話番号</Text>
-			<TextInput
-				bgStyle={inputStyles.bg}
-				onChangeText={(text) => onChangeText(text, setPhone)}
-				value={phone}
-				placeholder=""
-			/>
+			<Text style={styles.title}>確認コード</Text>
 
 			<Text style={inputStyles.label}>パスワード</Text>
 			<TextInput
@@ -53,13 +55,9 @@ export const SigninScreen: VFC = () => {
 				lightBgColor="#00e8bd"
 				darkBgColor="#00cba6"
 				outlineStyle={buttonStyles.outline}
-				title="サインイン"
-				onPress={() => onSignin(phone, password)}
+				title="送信"
+				onPress={() => onPostVerifyCode(props.phone, password)}
 			/>
-
-			<Text style={buttonStyles.register} onPress={onNavigateSignup}>
-				アカウント作成はこちら
-			</Text>
 		</View>
 	);
 };
@@ -83,6 +81,7 @@ const inputStyles = StyleSheet.create({
 		paddingVertical: 10,
 		fontSize: 15,
 		fontWeight: "bold",
+		textAlignVertical: "center",
 	},
 	bg: {
 		borderRadius: 10,

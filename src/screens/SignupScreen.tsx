@@ -6,7 +6,7 @@ import { ColorButton, Text, TextInput, View } from "src/components";
 import type { ScreenProp } from "types";
 
 // モーダルを開いた時の画面（下から出てくるやつ）
-export const SigninScreen: VFC = () => {
+export const SignupScreen: VFC = () => {
 	const navigation = useNavigation<ScreenProp>();
 
 	const [phone, setPhone] = useState("");
@@ -16,13 +16,22 @@ export const SigninScreen: VFC = () => {
 		setStateAction(text);
 	}, []);
 
-	const onSignin = useCallback((phone: string, password: string) => {
+	const onSignup = useCallback(async (phone: string, password: string) => {
 		console.info(phone, password);
-		navigation.navigate("Root");
-	}, []);
+		// const result = await fetch("http://localhost:4000/auth/signup", {
+		// 	method: "POST",
+		// 	headers: {
+		// 		Accept: "application/json",
+		// 		"Content-Type": "application/json",
+		// 	},
+		// 	body: JSON.stringify({
+		// 		phone: "81" + phone,
+		// 		password: password,
+		// 	}),
+		// });
+		// console.log(result);
 
-	const onNavigateSignup = useCallback(() => {
-		navigation.navigate("Signup");
+		navigation.navigate("Verify", { phone });
 	}, []);
 
 	return (
@@ -53,13 +62,9 @@ export const SigninScreen: VFC = () => {
 				lightBgColor="#00e8bd"
 				darkBgColor="#00cba6"
 				outlineStyle={buttonStyles.outline}
-				title="サインイン"
-				onPress={() => onSignin(phone, password)}
+				title="確認コードを受け取る"
+				onPress={() => onSignup(phone, password)}
 			/>
-
-			<Text style={buttonStyles.register} onPress={onNavigateSignup}>
-				アカウント作成はこちら
-			</Text>
 		</View>
 	);
 };
@@ -83,6 +88,7 @@ const inputStyles = StyleSheet.create({
 		paddingVertical: 10,
 		fontSize: 15,
 		fontWeight: "bold",
+		textAlignVertical: "center",
 	},
 	bg: {
 		borderRadius: 10,
