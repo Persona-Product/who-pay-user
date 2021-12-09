@@ -59,3 +59,4 @@ export type BottomTabScreenProps<T extends keyof BottomTabParamList> = Composite
 	BottomTabScreenProps<BottomTabParamList, T>,
 	NativeStackScreenProps<RootStackParamList>
 >;
+/* ---- */
