@@ -2,7 +2,7 @@
 import type { VFC } from "react";
 import React, { useCallback, useState } from "react";
 import { StyleSheet, TouchableWithoutFeedback } from "react-native";
-import { ColorButton, Text, TextInput, View } from "src/components";
+import { ColorButton, Text, TextInput, View } from "src/components/custom";
 import { onKeyBoardClose } from "src/functions/onKeyBoardClose";
 import type { RootTabScreenProps } from "types";
 
@@ -44,8 +44,6 @@ export const TabOneScreen: VFC<RootTabScreenProps<"TabOne">> = () => {
 
 				<ColorButton
 					textStyle={styles.buttonLabel}
-					lightTextColor="#ffffff"
-					darkTextColor="#ffffff"
 					bgStyle={styles.button}
 					lightBgColor="#4882ff"
 					darkBgColor="#ff8c00"

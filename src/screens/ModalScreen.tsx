@@ -1,18 +1,23 @@
+import { StatusBar } from "expo-status-bar";
 import type { VFC } from "react";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { Text, View } from "src/components/custom";
-import type { BottomTabScreenProps } from "types";
+import type { StackScreenProps } from "types";
 
-export const TabThreeScreen: VFC<BottomTabScreenProps<"TabThree">> = () => {
+export const ModalScreen: VFC<StackScreenProps<"Modal">> = () => {
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>Tab Three</Text>
+			<Text style={styles.title}>Modal 1</Text>
+
 			<View
 				style={styles.separator}
 				lightBgColor="#eee"
 				darkBgColor="rgba(255,255,255,0.1)"
 			/>
+
+			{/*  iOSの簡易的なステータスバーを使用して、モーダルの上の黒いスペースを考慮する  */}
+			<StatusBar style={Platform.OS === "ios" ? "dark" : "auto"} />
 		</View>
 	);
 };
